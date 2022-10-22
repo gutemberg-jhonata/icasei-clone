@@ -4,6 +4,7 @@ $title-text-color: #FFF;
 
 $title-font-family: 'Montserrat', sans-serif;
 $name-font-family: 'Mohave', sans-serif;
+$base-font-family: 'Lato', sans-serif;
 
 * {
     margin: 0;
@@ -120,7 +121,8 @@ main {
             justify-content: space-between;
             -webkit-box-align: center;
             align-items: center;
-            cursor: auto;
+            
+            transition: opacity 0.2s;
 
             img {
                 width: 100%;
@@ -129,6 +131,7 @@ main {
 
             section {
                 color: $body-color;
+                font-family: $base-font-family;
                 margin-top: 20px;
 
                 display: flex;
@@ -139,6 +142,7 @@ main {
 
                 h1 {
                     font-size: 18px;
+                    font-weight: normal;
                     line-height: 2;
                     text-align: center;
                     overflow-wrap: break-word;
@@ -150,7 +154,6 @@ main {
                 }
 
                 h2 {
-                    //font-family: var(--base-font-family);
                     font-size: 24px;
                     font-stretch: normal;
                     font-style: normal;
@@ -160,18 +163,32 @@ main {
                 }
 
                 button {
+                    cursor: pointer;
+                    
+                    font-family: $base-font-family;
                     color: $body-color;
                     font-size: 12px;
                     line-height: 2;
                     padding: 12px 36px;
                     box-shadow: none;
-                    border-radius: 5px;
                     border: 1px solid $body-color;
                     background: $title-text-color;
                     transition: background 0.2s;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.05);
+                    }
+                }
+            }
+
+            &[disabled] {
+                cursor: not-allowed;
+                opacity: 0.32;
+
+                button {
+                    cursor: not-allowed;
+                    &:hover {
+                        background: $title-text-color;
                     }
                 }
             }
