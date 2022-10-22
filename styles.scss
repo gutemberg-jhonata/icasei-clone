@@ -1,5 +1,6 @@
 $body-color: #020D3F;
 $couple-name-color: #FFF;
+$title-text-color: #FFF;
 
 $title-font-family: 'Montserrat', sans-serif;
 $name-font-family: 'Mohave', sans-serif;
@@ -73,4 +74,107 @@ body {
     bottom: 0;
     z-index: 5;
     color: $body-color;
+}
+
+main {
+    #presents-section-title {
+        font-size: 24px;
+        font-weight: 400;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $title-text-color;
+        font-family: $title-font-family;
+        line-height: 29px;
+        margin-top: 30px;
+    }
+
+    .divider {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .products {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, 255px);
+        -webkit-box-pack: center;
+        justify-content: center;
+        margin-bottom: 50px;
+
+        .product {
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0);
+            border-radius: 0px;
+            background: rgb(255, 254, 252);
+            padding: 40px 19px;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            align-items: center;
+            cursor: auto;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            section {
+                color: $body-color;
+                margin-top: 20px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+
+                h1 {
+                    font-size: 18px;
+                    line-height: 2;
+                    text-align: center;
+                    overflow-wrap: break-word;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                }
+
+                h2 {
+                    //font-family: var(--base-font-family);
+                    font-size: 24px;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 2;
+                    letter-spacing: normal;
+                    text-align: center;
+                }
+
+                button {
+                    color: $body-color;
+                    font-size: 12px;
+                    line-height: 2;
+                    padding: 12px 36px;
+                    box-shadow: none;
+                    border-radius: 5px;
+                    border: 1px solid $body-color;
+                    background: $title-text-color;
+                    transition: background 0.2s;
+
+                    &:hover {
+                        background: rgba(0, 0, 0, 0.05);
+                    }
+                }
+            }
+        }
+    }
 }
