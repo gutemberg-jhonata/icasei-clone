@@ -101,7 +101,7 @@ main {
         align-items: center;
     }
 
-    .products {
+    #products {
         display: grid;
         gap: 30px;
         grid-template-columns: repeat(auto-fit, 255px);
