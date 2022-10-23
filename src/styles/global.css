@@ -98,6 +98,20 @@ main {
         align-items: center;
     }
 
+    .gift-list-empty {
+        margin-bottom: 50px;
+
+        h3 {
+            text-align: center;
+            color: theme(colors.gray.300);
+        
+            a {
+                font-weight: bold;
+                text-decoration: underline;
+            }
+        }
+    }
+
     .gifts {
         display: grid;
         gap: 30px;
