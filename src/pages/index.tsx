@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { Gift } from "../components/Gift";
 import { api } from "../server/api";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 type Gift = {
     id: number,
     title: string;
@@ -39,7 +42,26 @@ export default function Home() {
 
     async function sendGift(id: number) {
         const result = await api.patch(`/gift/${id}/send`)
-        console.log(result.status)
+        
+        if (result.status !== 200) {
+            toast("Ops, algum erro ocorreu no servidor.", {
+                type: 'error',
+                theme: 'colored'
+            })
+        
+            toast("Tente novamente em alguns instantes.", {
+                type: 'info',
+                theme: 'colored'
+            })
+
+            return
+        }
+
+        toast("Presente enviado com sucesso!", {
+            type: 'success',
+            theme: 'colored',
+            icon: '🎁',
+        })
         
         const previousGifts = gifts.slice(0, id - 1)
         const selectedGift = gifts.slice(id - 1, id)
@@ -84,6 +106,8 @@ export default function Home() {
                     )}
                 </div>
             </main>
+
+            <ToastContainer />
         </>
     )
 }

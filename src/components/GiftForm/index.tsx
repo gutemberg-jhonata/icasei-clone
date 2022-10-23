@@ -56,9 +56,10 @@ export function GiftForm() {
       return
     }
 
-    toast("Seu presente foi salvo com sucesso.", {
+    toast("Seu presente foi adicionado a lista!", {
       type: 'success',
-      theme: 'colored'
+      theme: 'colored',
+      icon: '🎁'
     })
 
     setTitle("")
