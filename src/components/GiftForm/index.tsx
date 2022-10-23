@@ -1,18 +1,64 @@
 import { useState } from "react";
 import { api } from "../../server/api";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export function GiftForm() {
   const [ title, setTitle ] = useState("")
-  const [ price, setPrice ] = useState("")
+  const [ price, setPrice ] = useState(null)
   const [ description, setDescription ] = useState("")
 
   async function saveGift(event) {
     event.preventDefault()
 
-    await api.post('/gift/create', {
+    let countError = 0;
+
+    if (title.trim().length < 3) {
+      toast("O presente precisa ter um título.", {
+        type: 'error',
+        theme: 'colored'
+      })
+
+      countError++
+    }
+
+    if (!price) {
+      toast("O presente precisa ter um valor.", {
+        type: 'error',
+        theme: 'colored'
+      })
+
+      countError++
+    }
+
+    if (countError > 0) {
+      return
+    }
+
+    const response = await api.post('/gift/create', {
       title,
       price,
       description
+    })
+
+    if (response.status !== 201) {
+      toast("Ops, algum erro ocorreu no servidor.", {
+        type: 'error',
+        theme: 'colored'
+      })
+
+      toast("Tente novamente em alguns instantes.", {
+        type: 'info',
+        theme: 'colored'
+      })
+
+      return
+    }
+
+    toast("Seu presente foi salvo com sucesso.", {
+      type: 'success',
+      theme: 'colored'
     })
 
     setTitle("")
@@ -29,7 +75,7 @@ export function GiftForm() {
                   <div className="grid grid-cols-2 gap-6">
                     <div className="col-span-3 sm:col-span-1">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Titulo
+                        Título *
                       </label>
                       <input
                         type="text"
@@ -44,7 +90,7 @@ export function GiftForm() {
 
                     <div className="col-span-3 sm:col-span-1">
                       <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                        Preço
+                        Preço *
                       </label>
                       <input
                         type="number"
@@ -123,6 +169,7 @@ export function GiftForm() {
                 </div>
               </div>
             </form>
+            <ToastContainer />
           </div>
     </>
   )
