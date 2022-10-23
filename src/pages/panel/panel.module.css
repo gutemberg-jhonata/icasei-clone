@@ -1,5 +1,3 @@
-@use '../../styles/theme.scss';
-
 .title {
     font-size: 32px;
     font-weight: 400;
@@ -7,8 +5,8 @@
     font-style: normal;
     letter-spacing: normal;
     text-align: center;
-    color: theme.$title-text-color;
-    font-family: theme.$title-font-family;
+    color: theme(colors.title);
+    font-family: theme(fontFamily.title);
     line-height: 29px;
     margin-top: 30px;
 }

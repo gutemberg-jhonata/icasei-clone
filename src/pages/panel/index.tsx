@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import styles from "./panel.module.scss";
+import styles from "./panel.module.css";
 
 export default function Panel() {
     return (

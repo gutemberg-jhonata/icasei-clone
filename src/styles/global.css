@@ -1,4 +1,6 @@
-@use './theme.scss';
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
 
 * {
     margin: 0;
@@ -9,7 +11,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background-color: theme.$body-color;
+    background-color: theme(colors.primary);
 }
 
 #hero {
@@ -42,7 +44,7 @@ body {
 
     section {
         position: relative;
-        color: theme.$couple-name-color;
+        color: theme(colors.title);
 
         display: flex;
         flex-direction: column;
@@ -50,14 +52,14 @@ body {
         gap: 1rem;
         
         h3 {
-            font-family: theme.$title-font-family;
+            font-family: theme(fontFamily.title);
             font-size: 24px;
             line-height: 1.2;
             font-weight: 400;
         }
 
         h1 {
-            font-family: theme.$name-font-family;
+            font-family: theme(fontFamily.couple);
             font-size: min(80px, 7vw);
             line-height: 1.45;
             font-weight: 500;
@@ -69,7 +71,7 @@ body {
     position: absolute;
     bottom: 0;
     z-index: 5;
-    color: theme.$body-color;
+    color: theme(colors.primary);
 }
 
 main {
@@ -80,8 +82,8 @@ main {
         font-style: normal;
         letter-spacing: normal;
         text-align: center;
-        color: theme.$title-text-color;
-        font-family: theme.$title-font-family;
+        color: theme(colors.title);
+        font-family: theme(fontFamily.title);
         line-height: 29px;
         margin-top: 30px;
     }
@@ -125,8 +127,8 @@ main {
             }
 
             section {
-                color: theme.$body-color;
-                font-family: theme.$base-font-family;
+                color: theme(colors.primary);
+                font-family: theme(fontFamily.base);
                 margin-top: 20px;
 
                 display: flex;
@@ -160,14 +162,14 @@ main {
                 button {
                     cursor: pointer;
                     
-                    font-family: theme.$base-font-family;
-                    color: theme.$body-color;
+                    font-family: theme(fontFamily.base);
+                    color: theme(colors.primary);
                     font-size: 12px;
                     line-height: 2;
                     padding: 12px 36px;
                     box-shadow: none;
-                    border: 1px solid theme.$body-color;
-                    background: theme.$title-text-color;
+                    border: 1px solid theme(colors.primary);
+                    background: theme(colors.title);
                     transition: background 0.2s;
 
                     &:hover {
@@ -183,7 +185,7 @@ main {
                 button {
                     cursor: not-allowed;
                     &:hover {
-                        background: theme.$title-text-color;
+                        background: theme(colors.title);
                     }
                 }
             }
