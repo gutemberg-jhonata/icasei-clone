@@ -1,8 +1,29 @@
+import { useState } from "react";
+import { api } from "../../server/api";
+
 export function GiftForm() {
+  const [ title, setTitle ] = useState("")
+  const [ price, setPrice ] = useState("")
+  const [ description, setDescription ] = useState("")
+
+  async function saveGift(event) {
+    event.preventDefault()
+
+    await api.post('/gift/create', {
+      title,
+      price,
+      description
+    })
+
+    setTitle("")
+    setPrice("")
+    setDescription("")
+  }
+
   return (
     <>
       <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form action="/" method="POST">
               <div className="shadow sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-2 gap-6">
@@ -16,6 +37,8 @@ export function GiftForm() {
                         id="first-name"
                         autoComplete="given-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                       />
                     </div>
 
@@ -24,11 +47,13 @@ export function GiftForm() {
                         Preço
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
                       />
                     </div>
                   </div>
@@ -45,6 +70,8 @@ export function GiftForm() {
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder=""
                         defaultValue={''}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                       />
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
@@ -87,7 +114,8 @@ export function GiftForm() {
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    type="submit"
+                    
+                    onClick={saveGift}
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Salvar
