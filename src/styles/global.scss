@@ -101,7 +101,7 @@ main {
         align-items: center;
     }
 
-    #products {
+    #gifts {
         display: grid;
         gap: 30px;
         grid-template-columns: repeat(auto-fit, 255px);
@@ -109,7 +109,7 @@ main {
         justify-content: center;
         margin-bottom: 50px;
 
-        .product {
+        .gift {
             position: relative;
             border: 1px solid rgba(0, 0, 0, 0);
             border-radius: 0px;
