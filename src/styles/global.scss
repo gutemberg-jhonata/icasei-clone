@@ -1,10 +1,4 @@
-$body-color: #020D3F;
-$couple-name-color: #FFF;
-$title-text-color: #FFF;
-
-$title-font-family: 'Montserrat', sans-serif;
-$name-font-family: 'Mohave', sans-serif;
-$base-font-family: 'Lato', sans-serif;
+@use './theme.scss';
 
 * {
     margin: 0;
@@ -15,7 +9,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background-color: $body-color;
+    background-color: theme.$body-color;
 }
 
 #hero {
@@ -48,7 +42,7 @@ body {
 
     section {
         position: relative;
-        color: $couple-name-color;
+        color: theme.$couple-name-color;
 
         display: flex;
         flex-direction: column;
@@ -56,14 +50,14 @@ body {
         gap: 1rem;
         
         h3 {
-            font-family: $title-font-family;
+            font-family: theme.$title-font-family;
             font-size: 24px;
             line-height: 1.2;
             font-weight: 400;
         }
 
         h1 {
-            font-family: $name-font-family;
+            font-family: theme.$name-font-family;
             font-size: min(80px, 7vw);
             line-height: 1.45;
             font-weight: 500;
@@ -75,7 +69,7 @@ body {
     position: absolute;
     bottom: 0;
     z-index: 5;
-    color: $body-color;
+    color: theme.$body-color;
 }
 
 main {
@@ -86,8 +80,8 @@ main {
         font-style: normal;
         letter-spacing: normal;
         text-align: center;
-        color: $title-text-color;
-        font-family: $title-font-family;
+        color: theme.$title-text-color;
+        font-family: theme.$title-font-family;
         line-height: 29px;
         margin-top: 30px;
     }
@@ -131,8 +125,8 @@ main {
             }
 
             section {
-                color: $body-color;
-                font-family: $base-font-family;
+                color: theme.$body-color;
+                font-family: theme.$base-font-family;
                 margin-top: 20px;
 
                 display: flex;
@@ -166,14 +160,14 @@ main {
                 button {
                     cursor: pointer;
                     
-                    font-family: $base-font-family;
-                    color: $body-color;
+                    font-family: theme.$base-font-family;
+                    color: theme.$body-color;
                     font-size: 12px;
                     line-height: 2;
                     padding: 12px 36px;
                     box-shadow: none;
-                    border: 1px solid $body-color;
-                    background: $title-text-color;
+                    border: 1px solid theme.$body-color;
+                    background: theme.$title-text-color;
                     transition: background 0.2s;
 
                     &:hover {
@@ -189,7 +183,7 @@ main {
                 button {
                     cursor: not-allowed;
                     &:hover {
-                        background: $title-text-color;
+                        background: theme.$title-text-color;
                     }
                 }
             }
