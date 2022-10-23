@@ -1,3 +1,12 @@
+.panelContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    background-color: theme(colors.gray.300);
+}
+
 .title {
     font-size: 32px;
     font-weight: 400;
@@ -5,8 +14,7 @@
     font-style: normal;
     letter-spacing: normal;
     text-align: center;
-    color: theme(colors.title);
+    color: theme(colors.gray.900);
     font-family: theme(fontFamily.title);
     line-height: 29px;
-    margin-top: 30px;
 }

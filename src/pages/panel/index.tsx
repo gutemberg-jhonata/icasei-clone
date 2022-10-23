@@ -1,14 +1,13 @@
 import { GetServerSideProps } from "next";
+import { GiftForm } from "../../components/GiftForm";
 import styles from "./panel.module.css";
 
 export default function Panel() {
     return (
-        <>
-            <header className={styles.title}>Lista de presentes</header>
-            <div className="divider">
-                <svg width="56" height="2" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="2" rx="1" fill="#C5AE82"></rect></svg>
-            </div>
-        </>
+        <div className={styles.panelContainer}>
+            <header className={styles.title}>Adicionar novo presente</header>
+            <GiftForm />
+        </div>
     )
 }
 
