@@ -127,6 +127,7 @@ main {
             }
 
             section {
+                width: 100%;
                 color: theme(colors.primary);
                 font-family: theme(fontFamily.base);
                 margin-top: 20px;
@@ -157,6 +158,20 @@ main {
                     line-height: 2;
                     letter-spacing: normal;
                     text-align: center;
+                }
+
+                h3 {
+                    color: theme(colors.gray.600);
+                    width: 100%;
+                    font-size: 14px;
+                    font-weight: normal;
+                    line-height: 2;;
+                    overflow-wrap: break-word;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
                 }
 
                 button {

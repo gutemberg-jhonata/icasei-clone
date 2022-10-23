@@ -71,14 +71,16 @@ export default function Home() {
                     <svg width="56" height="2" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="2" rx="1" fill="#C5AE82"></rect></svg>
                 </div>
                 <div className="gifts">
-                    {gifts.map(({id, title, available, priceFormatted}) => 
+                    {gifts.map(({id, title, available, priceFormatted, description}) => 
                         <Gift 
                             id={id} 
                             title={title}
                             available={available}
                             price={priceFormatted}
                             onSend={sendGift}
-                        />
+                        >
+                            {description}
+                        </Gift>
                     )}
                 </div>
             </main>
