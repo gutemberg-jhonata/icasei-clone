@@ -10,8 +10,9 @@ type Gift = {
     title: string;
     description: string;
     price: number;
-    priceFormatted: string
+    priceFormatted: string;
     available: boolean;
+    imageBase64: string;
 }
 
 export default function Home() {
@@ -97,12 +98,14 @@ export default function Home() {
                     gifts.length ? (
                         <div className="gifts">
                             {
-                                gifts.map(({id, title, available, priceFormatted, description}) => 
+                                gifts.map(({id, title, available, priceFormatted, description, imageBase64}) => 
                                     <Gift 
+                                        key={id}
                                         id={id} 
                                         title={title}
                                         available={available}
                                         price={priceFormatted}
+                                        imageBase64={imageBase64}
                                         onSend={sendGift}
                                     >
                                         {description}

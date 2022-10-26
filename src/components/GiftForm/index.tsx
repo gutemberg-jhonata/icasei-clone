@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { api } from "../../server/api";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,8 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function GiftForm() {
   const [ title, setTitle ] = useState("")
-  const [ price, setPrice ] = useState(null)
+  const [ price, setPrice ] = useState("")
   const [ description, setDescription ] = useState("")
+  let imageBase64 = null
+
+  function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+    reader.onload = () => {
+      imageBase64 = String(reader.result)
+    }
+    reader.readAsDataURL(file)
+  }
 
   async function saveGift(event) {
     event.preventDefault()
@@ -36,13 +46,29 @@ export function GiftForm() {
       return
     }
 
-    const response = await api.post('/gift/create', {
-      title,
-      price,
-      description
-    })
+    try {
+      await api.post('/gift/create', {
+        title,
+        price,
+        description,
+        imageBase64
+      }, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
 
-    if (response.status !== 201) {
+      toast("Seu presente foi adicionado a lista!", {
+        type: 'success',
+        theme: 'colored',
+        icon: '🎁'
+      })
+  
+      setTitle("")
+      setPrice("")
+      setDescription("")
+
+    } catch (_) {
       toast("Ops, algum erro ocorreu no servidor.", {
         type: 'error',
         theme: 'colored'
@@ -52,19 +78,7 @@ export function GiftForm() {
         type: 'info',
         theme: 'colored'
       })
-
-      return
     }
-
-    toast("Seu presente foi adicionado a lista!", {
-      type: 'success',
-      theme: 'colored',
-      icon: '🎁'
-    })
-
-    setTitle("")
-    setPrice("")
-    setDescription("")
   }
 
   return (
@@ -116,7 +130,6 @@ export function GiftForm() {
                         rows={3}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder=""
-                        defaultValue={''}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       />
@@ -150,7 +163,13 @@ export function GiftForm() {
                             className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                           >
                             <span>Carregue um arquivo</span>
-                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                            <input 
+                              id="file-upload" 
+                              name="file-upload" 
+                              type="file" 
+                              className="sr-only" 
+                              onChange={handleSelectImage}
+                            />
                           </label>
                           <p className="pl-1">ou arraste e solte</p>
                         </div>
