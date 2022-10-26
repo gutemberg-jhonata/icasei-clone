@@ -1,3 +1,5 @@
+import giftImage from "../../public/gift.jpg";
+
 type GiftProps = {
     id: number,
     title: string;
@@ -15,7 +17,7 @@ export function Gift({id, available, title, price, imageBase64, onSend, children
             className="gift"
             aria-disabled={!available}
         >
-            <img src={imageBase64} alt={title} />
+            <img src={imageBase64 ?? giftImage.src} alt={title} />
             <section>
                 <h1>{title}</h1>
                 <h3>{children}</h3>
