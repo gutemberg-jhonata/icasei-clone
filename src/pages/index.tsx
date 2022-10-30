@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 type Gift = {
-    id: number,
+    _id: number,
     title: string;
     description: string;
     price: number;
@@ -98,10 +98,10 @@ export default function Home() {
                     gifts.length ? (
                         <div className="gifts">
                             {
-                                gifts.map(({id, title, available, priceFormatted, description, imageBase64}) => 
+                                gifts.map(({_id, title, available, priceFormatted, description, imageBase64}) => 
                                     <Gift 
-                                        key={id}
-                                        id={id} 
+                                        key={_id}
+                                        id={_id} 
                                         title={title}
                                         available={available}
                                         price={priceFormatted}

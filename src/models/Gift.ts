@@ -5,7 +5,8 @@ type GiftType = {
     title: string,
     price: number,
     imageBase64: string,
-    description: string
+    description: string,
+    available: boolean
 }
 
 const giftSchema = new mongoose.Schema<GiftType>({
@@ -21,7 +22,12 @@ const giftSchema = new mongoose.Schema<GiftType>({
         type: String,
         required: true
     },
-    description: String
+    description: String,
+    available: {
+        type: Boolean,
+        required: true,
+        default: true
+    }
 })
 
 export const Gift = mongoose.models.Gift as Model<GiftType> || mongoose.model('Gift', giftSchema)

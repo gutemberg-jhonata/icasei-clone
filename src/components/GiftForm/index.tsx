@@ -52,10 +52,6 @@ export function GiftForm() {
         price,
         description,
         imageBase64
-      }, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
       })
 
       toast("Seu presente foi adicionado a lista!", {
