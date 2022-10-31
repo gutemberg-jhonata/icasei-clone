@@ -16,6 +16,7 @@ type Gift = {
 
 export default function Home() {
     const [ gifts, setGifts ] = useState<Gift[]>([])
+    const [ isLoading, setIsLoading ] = useState(true)
     const { toastSuccess, toastError, toastInfo, ToastContainer } = useToast()
 
     useEffect(() => {
@@ -36,6 +37,7 @@ export default function Home() {
                 }
             })
             setGifts(data)
+            setIsLoading(false)
         }
 
         getGifts()
@@ -84,6 +86,9 @@ export default function Home() {
                 </div>
                 
                 {
+                    isLoading ? <section className="gift-list-empty">
+                        <h3>Buscando presentes... 🔍</h3>
+                    </section> : 
                     gifts.length ? (
                         <div className="gifts">
                             {
