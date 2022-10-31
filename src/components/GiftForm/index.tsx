@@ -2,13 +2,16 @@ import { ChangeEvent, useState } from "react";
 import { api } from "../../server/api";
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//import 'react-toastify/dist/ReactToastify.css';
+import { useToast } from "../../hooks/useToast";
 
 export function GiftForm() {
   const [ title, setTitle ] = useState("")
   const [ price, setPrice ] = useState("")
   const [ description, setDescription ] = useState("")
   let imageBase64 = null
+
+  const { toastSuccess, toastError, toastInfo } = useToast()
 
   function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files[0]
@@ -25,20 +28,12 @@ export function GiftForm() {
     let countError = 0;
 
     if (title.trim().length < 3) {
-      toast("O presente precisa ter um título.", {
-        type: 'error',
-        theme: 'colored'
-      })
-
+      toastError("O presente precisa ter um título.")
       countError++
     }
 
     if (!price) {
-      toast("O presente precisa ter um valor.", {
-        type: 'error',
-        theme: 'colored'
-      })
-
+      toastError("O presente precisa ter um valor.")
       countError++
     }
 
@@ -54,26 +49,15 @@ export function GiftForm() {
         imageBase64
       })
 
-      toast("Seu presente foi adicionado a lista!", {
-        type: 'success',
-        theme: 'colored',
-        icon: '🎁'
-      })
+      toastSuccess("Seu presente foi adicionado a lista!")
   
       setTitle("")
       setPrice("")
       setDescription("")
 
     } catch (_) {
-      toast("Ops, algum erro ocorreu no servidor.", {
-        type: 'error',
-        theme: 'colored'
-      })
-
-      toast("Tente novamente em alguns instantes.", {
-        type: 'info',
-        theme: 'colored'
-      })
+      toastError("Ops, algum erro ocorreu no servidor.")
+      toastInfo("Tente novamente em alguns instantes.")
     }
   }
 
