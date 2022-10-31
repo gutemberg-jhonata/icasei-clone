@@ -14,8 +14,14 @@ export function GiftForm() {
   function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files[0]
     const reader = new FileReader()
+    reader.onloadstart = () => {
+      toastInfo("Carregando imagem...")
+    }
     reader.onload = () => {
       imageBase64 = String(reader.result)
+    }
+    reader.onloadend = () => {
+      toastSuccess("Carregamento concluído!")
     }
     reader.readAsDataURL(file)
   }
