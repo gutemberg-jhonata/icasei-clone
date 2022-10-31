@@ -1,8 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { api } from "../../server/api";
 
-import { ToastContainer, toast } from 'react-toastify';
-//import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { useToast } from "../../hooks/useToast";
 
 export function GiftForm() {
@@ -22,7 +21,7 @@ export function GiftForm() {
     reader.readAsDataURL(file)
   }
 
-  async function saveGift(event) {
+  async function saveGift(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
 
     let countError = 0;
@@ -34,6 +33,11 @@ export function GiftForm() {
 
     if (!price) {
       toastError("O presente precisa ter um valor.")
+      countError++
+    }
+
+    if(!imageBase64) {
+      toastError("O presente precisa ter uma imagem.")
       countError++
     }
 
@@ -160,7 +164,6 @@ export function GiftForm() {
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    
                     onClick={saveGift}
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
