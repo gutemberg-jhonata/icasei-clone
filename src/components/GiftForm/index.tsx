@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { api } from "../../server/api";
 
-import { ToastContainer } from 'react-toastify';
 import { useToast } from "../../hooks/useToast";
 
 export function GiftForm() {
@@ -10,7 +9,7 @@ export function GiftForm() {
   const [ description, setDescription ] = useState("")
   let imageBase64 = null
 
-  const { toastSuccess, toastError, toastInfo } = useToast()
+  const { toastSuccess, toastError, toastInfo, ToastContainer } = useToast()
 
   function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files[0]

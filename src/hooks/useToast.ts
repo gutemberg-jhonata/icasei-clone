@@ -1,6 +1,6 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 import { Theme } from 'react-toastify/dist/types/index'
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme: Theme = 'colored'
 
@@ -8,7 +8,8 @@ export function useToast() {
     return {
         toastSuccess,
         toastError,
-        toastInfo
+        toastInfo,
+        ToastContainer
     }
 }
 
