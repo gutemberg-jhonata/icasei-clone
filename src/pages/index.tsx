@@ -43,7 +43,9 @@ export default function Home() {
         getGifts()
     }, [])
 
-    async function sendGift(id: number) {
+    async function sendGift(id: number, index: number) {
+        toastInfo("Enviando presente...")
+        
         const result = await api.patch(`/gift/${id}/send`)
         
         if (result.status !== 200) {
@@ -55,10 +57,10 @@ export default function Home() {
 
         toastSuccess("Presente enviado com sucesso!")
         
-        const previousGifts = gifts.slice(0, id - 1)
-        const selectedGift = gifts.slice(id - 1, id)
+        const previousGifts = gifts.slice(0, index)
+        const selectedGift = gifts.slice(index, index + 1)
         selectedGift[0].available = false
-        const nextGifts = gifts.slice(id, gifts.length)
+        const nextGifts = gifts.slice(index + 1, gifts.length)
 
         setGifts([
             ...previousGifts,
@@ -92,8 +94,9 @@ export default function Home() {
                     gifts.length ? (
                         <div className="gifts">
                             {
-                                gifts.map(({_id, title, available, priceFormatted, description, imageBase64}) => 
+                                gifts.map(({_id, title, available, priceFormatted, description, imageBase64}, index) => 
                                     <Gift 
+                                        index={index}
                                         key={_id}
                                         id={_id} 
                                         title={title}

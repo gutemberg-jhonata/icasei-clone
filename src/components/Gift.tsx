@@ -1,19 +1,19 @@
 import giftImage from "../../public/gift.jpg";
 
 type GiftProps = {
+    index: number,
     id: number,
     title: string;
     price: string;
     imageBase64: string;
     available: boolean;
-    onSend: (id: number) => {};
+    onSend: (id: number, index: number) => {};
     children: string;
 }
 
-export function Gift({id, available, title, price, imageBase64, onSend, children}: GiftProps) {
+export function Gift({index, id, available, title, price, imageBase64, onSend, children}: GiftProps) {
     return (
         <div 
-            key={id} 
             className="gift"
             aria-disabled={!available}
         >
@@ -22,7 +22,7 @@ export function Gift({id, available, title, price, imageBase64, onSend, children
                 <h1>{title}</h1>
                 <h3>{children}</h3>
                 <h2>{price}</h2>
-                <button onClick={() => onSend(id)}>
+                <button onClick={() => onSend(id, index)}>
                     {available ? 'Presentear' : 'Indisponível'}
                 </button>
             </section>
