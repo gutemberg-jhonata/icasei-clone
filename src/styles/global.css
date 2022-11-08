@@ -84,29 +84,41 @@ body {
     align-items: center;
 }
 
-.message {
+.message-section {
     font-size: 17px;
     padding-inline: 120px;
     color: theme(colors.gray.400);
+    margin-top: 30px;
 
-    p:first-child {
-        margin-block: 30px;
+    p {
+        margin-top: 30px;
     }
 }
 
-main {
-    #presents-section-title {
-        font-size: 24px;
-        font-weight: 400;
-        font-stretch: normal;
-        font-style: normal;
-        letter-spacing: normal;
-        text-align: center;
-        color: theme(colors.title);
-        font-family: theme(fontFamily.title);
-        line-height: 29px;
-    }
+.address-section {
+    font-size: 17px;
+    padding-inline: 120px;
+    color: theme(colors.gray.400);
+    text-align: center;
 
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: theme(colors.title);
+    font-family: theme(fontFamily.title);
+    line-height: 29px;
+}
+
+main {
     .gift-list-empty {
         margin-bottom: 50px;
 
