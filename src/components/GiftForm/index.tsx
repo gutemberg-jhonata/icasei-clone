@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { api } from "../../server/api";
-
 import { useToast } from "../../hooks/useToast";
+import Autonumeric from "autonumeric"
 
 export function GiftForm() {
   const [ title, setTitle ] = useState("")
@@ -10,6 +10,17 @@ export function GiftForm() {
   let imageBase64 = null
 
   const { toastSuccess, toastError, toastInfo, ToastContainer } = useToast()
+
+  const priceInputRef = useRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (!Autonumeric.getAutoNumericElement(priceInputRef.current)) {
+      new Autonumeric(priceInputRef.current, "", {
+        decimalCharacter: ',',
+        digitGroupSeparator: '.'
+      })
+    }
+  }, [priceInputRef])
 
   function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files[0]
@@ -51,9 +62,11 @@ export function GiftForm() {
     }
 
     try {
+      const anElement = Autonumeric.getAutoNumericElement(priceInputRef.current)
+  
       await api.post('/gift/create', {
         title,
-        price,
+        price: anElement.getNumber(),
         description,
         imageBase64
       })
@@ -63,6 +76,7 @@ export function GiftForm() {
       setTitle("")
       setPrice("")
       setDescription("")
+      anElement.clear()
 
     } catch (_) {
       toastError("Ops, algum erro ocorreu no servidor.")
@@ -97,12 +111,14 @@ export function GiftForm() {
                         Preço *
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         name="last-name"
-                        id="last-name"
+                        id="price"
+                        ref={priceInputRef}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         value={price}
+                        onClick={(e) => e.preventDefault()}
                         onChange={(e) => setPrice(e.target.value)}
                       />
                     </div>
